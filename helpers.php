@@ -42,3 +42,24 @@ function loadPartial($name) {
         return 'Partial ' . $partialPath . ' not found';
     }
 }
+
+/**
+ * Inspect a value
+ *
+ * @param mixed $command
+ * @return void
+ */
+function inspect($command) {
+    echo '<pre>' . var_dump($command) . '</pre>';
+}
+
+/**
+ * Inspect a value and die
+ *
+ * @param mixed $command
+ * @return void
+ */
+function inspectAndDie($command) {
+    echo '<pre>' . var_dump($command) . '</pre>';
+    die();
+}
