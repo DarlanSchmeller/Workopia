@@ -23,7 +23,7 @@ function loadView($name) {
     if(file_exists($viewPath)) {
         require $viewPath;
     } else {
-        return 'View ' . $viewPath . ' not found';
+        echo 'View ' . $viewPath . ' not found';
     }
 }
 /**
