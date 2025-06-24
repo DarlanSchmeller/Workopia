@@ -1,6 +1,11 @@
 <?php
 require_once('../helpers.php');
 
+require_once basePath('Database.php');
+$config = require_once basePath('config/db.php');
+
+$db = new Database($config);
+
 require basePath('Router.php');
 
 $router = new Router();
