@@ -3,3 +3,6 @@
 .env
 .vscode
 .DS_Store
+.gitignore
+Dockerfile
+docker-compose.yml
