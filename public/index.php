@@ -1,7 +1,7 @@
 <?php
 require_once('../helpers.php');
-require basePath('Router.php');
-require_once basePath('Database.php');
+require basePath('Framework/Router.php');
+require_once basePath('Framework/Database.php');
 
 // Instantiate new Router object
 $router = new Router();
