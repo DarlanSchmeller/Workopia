@@ -1,0 +1,16 @@
+{
+    "name": "darlanschmeller/workopia",
+    "description": "Job listing application",
+    "authors": [
+        {
+            "name": "Darlan Rodrigues Schmeller",
+            "email": "darlanschimeller@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Framework\\": "Framework/",
+            "App\\": "App/"
+        }
+    }
+}

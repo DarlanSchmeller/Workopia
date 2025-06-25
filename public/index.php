@@ -1,14 +1,15 @@
 <?php
+require __DIR__ . '/../vendor';
 require_once('../helpers.php');
 
 // Require needed classes if they are called and exist
-spl_autoload_register(function ($class) {
-    $path = basePath('Framework/' . $class . '.php');
+// spl_autoload_register(function ($class) {
+//     $path = basePath('Framework/' . $class . '.php');
 
-    if(file_exists($path)) {
-        require_once $path;
-    }
-});
+//     if(file_exists($path)) {
+//         require_once $path;
+//     }
+// });
 
 // Instantiate new Router object
 $router = new Router();
