@@ -6,7 +6,8 @@
  * @param string $path
  * @return string
  */
-function basePath($path = '') {
+function basePath($path = '')
+{
     return __DIR__ . '/' . $path;
 }
 
@@ -18,10 +19,11 @@ function basePath($path = '') {
  * @return void
  * 
  */
-function loadView($name, $data = []) {
+function loadView($name, $data = [])
+{
     $viewPath = basePath("App/views/" . $name . '.view.php');
 
-    if(file_exists($viewPath)) {
+    if (file_exists($viewPath)) {
         extract($data);
 
         require $viewPath;
@@ -36,10 +38,11 @@ function loadView($name, $data = []) {
  * @return void
  * 
  */
-function loadPartial($name) {
+function loadPartial($name)
+{
     $partialPath = basePath("App/views/partials/" . $name . '.php');
 
-    if(file_exists($partialPath)) {
+    if (file_exists($partialPath)) {
         require $partialPath;
     } else {
         return 'Partial ' . $partialPath . ' not found';
@@ -52,7 +55,8 @@ function loadPartial($name) {
  * @param mixed $command
  * @return void
  */
-function inspect($command) {
+function inspect($command)
+{
     echo '<pre>' . var_dump($command) . '</pre>';
 }
 
@@ -62,7 +66,8 @@ function inspect($command) {
  * @param mixed $command
  * @return void
  */
-function inspectAndDie($command) {
+function inspectAndDie($command)
+{
     echo '<pre>' . var_dump($command) . '</pre>';
     die();
 }
@@ -73,6 +78,7 @@ function inspectAndDie($command) {
  * @param string $salary
  * @return string Formatted Salary
  */
-function formatSalary($salary) {
+function formatSalary($salary)
+{
     return '$' . number_format(floatval($salary));
 }

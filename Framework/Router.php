@@ -45,7 +45,8 @@ class Router
      * @param string $controller
      * @return void
      */
-    public function post($uri, $controller) {
+    public function post($uri, $controller)
+    {
         $this->registerRoute('POST', $uri, $controller);
     }
 
@@ -56,7 +57,8 @@ class Router
      * @param string $controller
      * @return void
      */
-    public function put($uri, $controller) {
+    public function put($uri, $controller)
+    {
         $this->registerRoute('PUT', $uri, $controller);
     }
 
@@ -67,7 +69,8 @@ class Router
      * @param string $controller
      * @return void
      */
-    public function delete($uri, $controller) {
+    public function delete($uri, $controller)
+    {
         $this->registerRoute('DELETE', $uri, $controller);
     }
 
@@ -77,7 +80,8 @@ class Router
      * 
      * @return void
      */
-    public function error($httpCode = 404) {
+    public function error($httpCode = 404)
+    {
         http_response_code($httpCode);
         loadView('error/' . $httpCode);
     }
@@ -89,9 +93,10 @@ class Router
      * @param string $method
      * @return void
      */
-    public function route($uri, $method) {
-        foreach($this->routes as $route) {
-            if($route['uri'] === $uri && $route['method'] === $method) {
+    public function route($uri, $method)
+    {
+        foreach ($this->routes as $route) {
+            if ($route['uri'] === $uri && $route['method'] === $method) {
                 // Extract controller and controllerMethod
                 $controller = 'App\\controllers\\' . $route['controller'];
                 $controllerMethod = $route['controllerMethod'];
