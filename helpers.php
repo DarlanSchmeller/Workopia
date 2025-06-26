@@ -57,7 +57,9 @@ function loadPartial($name)
  */
 function inspect($command)
 {
-    echo '<pre>' . var_dump($command) . '</pre>';
+    echo '<pre>';
+    var_dump($command);
+    echo  '</pre>';
 }
 
 /**
@@ -68,7 +70,9 @@ function inspect($command)
  */
 function inspectAndDie($command)
 {
-    echo '<pre>' . var_dump($command) . '</pre>';
+    echo '<pre>';
+    var_dump($command);
+    echo  '</pre>';
     die();
 }
 

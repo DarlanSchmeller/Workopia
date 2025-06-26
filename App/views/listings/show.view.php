@@ -3,9 +3,6 @@
 <!-- Nav -->
 <?= loadPartial('navbar'); ?>
 
-<!-- Showcase -->
-<?= loadPartial('showcase-search'); ?>
-
 <!-- Top Banner -->
 <?= loadPartial('top-banner'); ?>
 
