@@ -1,17 +1,10 @@
 <?php
+session_start();
+
 require __DIR__ . '/../vendor/autoload.php';
 require_once('../helpers.php');
 
 use Framework\Router;
-
-// Require needed classes if they are called and exist
-// spl_autoload_register(function ($class) {
-//     $path = basePath('Framework/' . $class . '.php');
-
-//     if(file_exists($path)) {
-//         require_once $path;
-//     }
-// });
 
 // Instantiate new Router object
 $router = new Router();
