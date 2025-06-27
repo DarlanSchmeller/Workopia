@@ -42,6 +42,7 @@ class ListingController
     /**
      * Show a single listing
      *
+     * @param array $params
      * @return void
      */
     public function show($params)
@@ -110,8 +111,7 @@ class ListingController
             }
         }
 
-        if (!empty($errors))
-        {
+        if (!empty($errors)) {
             // Reload view with errors
             loadView('listings/create', [
                 'errors' => $errors,
@@ -121,16 +121,16 @@ class ListingController
             // Submit data
             $fields = [];
 
-            foreach($newListingData as $field => $value) {
+            foreach ($newListingData as $field => $value) {
                 $fields[] = $field;
             }
             $fields = implode(', ', $fields);
 
             $values = [];
-            
-            foreach($newListingData as $field => $value) {
+
+            foreach ($newListingData as $field => $value) {
                 // Convert empty strings to null
-                if($value === '') {
+                if ($value === '') {
                     $newListingData[$field] = null;
                 }
                 $values[] = ':' . $field;
@@ -143,5 +143,31 @@ class ListingController
             $this->db->query($query, $newListingData);
             redirect('/listings');
         }
+    }
+
+    /**
+     * Delete a listing
+     *
+     * @param array $params
+     * @return void
+     */
+    public function destroy($params)
+    {
+        $id = $params['id'];
+
+        $params = [
+            'id' => $id
+        ];
+
+        $listing = $this->db->query('SELECT * from listings WHERE id = :id', $params)->fetch();
+
+        if (!$listing) {
+            ErrorController::notFound();
+            return;
+        }
+
+        $this->db->query('DELETE FROM listings WHERE id = :id', $params);
+
+        redirect('/listings');
     }
 }

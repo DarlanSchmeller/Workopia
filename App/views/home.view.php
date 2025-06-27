@@ -33,7 +33,7 @@
                                 <?= $listing['tags'] ?>
                             </li>
                         </ul>
-                        <a href="listing/<?= $listing['id'] ?>"
+                        <a href="listings/<?= $listing['id'] ?>"
                             class="block w-full text-center px-5 py-2.5 shadow-sm rounded border text-base font-medium text-indigo-700 bg-indigo-100 hover:bg-indigo-200">
                             Details
                         </a>
