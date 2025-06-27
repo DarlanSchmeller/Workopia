@@ -97,3 +97,14 @@ function sanitize($dirty)
 {
     return filter_var(trim($dirty), FILTER_SANITIZE_SPECIAL_CHARS);
 }
+
+/**
+ * Redirect to a given URL
+ * 
+ * @param string $url
+ * @return void
+ */
+function redirect($url) {
+    header('Location: ' . $url);
+    exit();
+}

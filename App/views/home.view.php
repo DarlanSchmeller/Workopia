@@ -30,7 +30,7 @@
                             </li>
                             <li class="mb-2">
                                 <strong>Tags:</strong>
-                                <?= ucfirst($listing['tags']) ?>
+                                <?= $listing['tags'] ?>
                             </li>
                         </ul>
                         <a href="listing/<?= $listing['id'] ?>"
