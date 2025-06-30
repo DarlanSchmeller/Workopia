@@ -111,7 +111,7 @@ class UserController
         // Get new user id
         $userId = $this->db->conn->lastInsertId();
 
-        Session::Set($user, [
+        Session::set('user', [
             'id' => $userId,
             'name' => $name,
             'email' => $email,
