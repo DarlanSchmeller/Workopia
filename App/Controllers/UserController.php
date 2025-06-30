@@ -9,7 +9,8 @@ class UserController
 {
     protected $db;
 
-    public function __construct() {
+    public function __construct()
+    {
         $config = require basePath('/config/db.php');
         $this->db = new Database($config);
     }
@@ -19,7 +20,8 @@ class UserController
      * 
      * @return void
      */
-    public function login() {
+    public function login()
+    {
         loadView('users/login');
     }
 
@@ -28,7 +30,8 @@ class UserController
      *
      * @return void
      */
-    public function create() {
+    public function create()
+    {
         loadView('users/create');
     }
 
@@ -37,7 +40,8 @@ class UserController
      * 
      * @return void
      */
-    public function store() {
+    public function store()
+    {
         $name = $_POST['name'];
         $email = $_POST['email'];
         $city = $_POST['city'];
@@ -64,20 +68,45 @@ class UserController
         }
 
         if (!empty($errors)) {
-            loadView('/users/create',[
+            loadView('/users/create', [
                 'errors' => $errors,
-                'user' =>[
+                'user' => [
                     'name' => $name,
                     'email' => $email,
                     'city' => $city,
                     'state' => $state
                 ]
-                ]);
-                exit();
-        } else {
-
+            ]);
+            exit();
         }
 
-        inspectAndDie('Store');
+        // Check if email exists
+        $params = [
+            'email' => $email
+        ];
+
+        $user = $this->db->query('SELECT * FROM users WHERE email = :email', $params)->fetch();
+
+        if ($user) {
+            $errors['email'] = 'That email already exists';
+            loadView('users/create', [
+                'errors' => $errors
+            ]);
+            exit();
+        }
+
+        // Create user account
+        $params = [
+            'name' => $name,
+            'email' => $email,
+            'city' => $city,
+            'state' => $state,
+            'password' => password_hash($password, PASSWORD_DEFAULT),
+        ];
+
+        $this->db->query('INSERT INTO users (name, email, city, state, password)
+        VALUES (:name, :email, :city, :state, :password)', $params);
+
+        redirect('/');
     }
 }
