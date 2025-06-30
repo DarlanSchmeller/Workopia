@@ -51,4 +51,4 @@
 <?= loadPartial('bottom-banner') ?>
 
 <!-- Footer -->
-<?= loadPartial('footer');
+<?= loadPartial('footer'); ?>

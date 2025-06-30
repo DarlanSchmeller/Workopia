@@ -12,4 +12,4 @@
 </section>
 
 <!-- Footer -->
-<?= loadPartial('footer');
+<?= loadPartial('footer'); ?>
