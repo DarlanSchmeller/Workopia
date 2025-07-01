@@ -129,7 +129,7 @@ class Router
                 }
 
                 if ($match) {
-                    foreach($route['middleware'] as $middleware) {
+                    foreach ($route['middleware'] as $middleware) {
                         (new Authorize())->handle($middleware);
                     }
 

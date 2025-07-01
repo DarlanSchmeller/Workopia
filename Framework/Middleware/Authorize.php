@@ -11,7 +11,8 @@ class Authorize
      * 
      * @return bool
      */
-    public function isAuthenticated() {
+    public function isAuthenticated()
+    {
         return Session::has('user');
     }
 
@@ -21,7 +22,8 @@ class Authorize
      * @param string $role
      * @return bool
      */
-    public function handle($role) {
+    public function handle($role)
+    {
         if ($role === 'guest' && $this->isAuthenticated()) {
             return redirect('/');
         } elseif ($role === 'auth' && !$this->isAuthenticated()) {

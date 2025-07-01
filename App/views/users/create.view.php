@@ -17,7 +17,7 @@
                     name="name"
                     placeholder="Full Name"
                     class="w-full px-4 py-2 border rounded focus:outline-none"
-                    value="<?= $user['name'] ?? '' ?>"  />
+                    value="<?= $user['name'] ?? '' ?>" />
             </div>
             <div class="mb-4">
                 <input

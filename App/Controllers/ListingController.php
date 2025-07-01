@@ -143,6 +143,10 @@ class ListingController
             $query = "INSERT INTO listings ({$fields}) VALUES ({$values})";
 
             $this->db->query($query, $newListingData);
+
+            // Set flash message
+            Session::setFlashMessage('success_message', 'Listing created successfully');
+
             redirect('/listings');
         }
     }
@@ -170,20 +174,20 @@ class ListingController
         }
 
         // Authorization
-        if(!Authorization::isOwner($listing['user_id'])) {
-            $_SESSION['error_message'] = 'You are not authorized to delete this listing';
+        if (!Authorization::isOwner($listing['user_id'])) {
+            Session::setFlashMessage('error_message', 'You are not authorized to delete this listing');
             return redirect('/listings/' . $id);
         }
 
         $this->db->query('DELETE FROM listings WHERE id = :id', $params);
 
         // Set flash message
-        $_SESSION['success_message'] = 'Listing deleted successfully';
+        Session::setFlashMessage('success_message', 'Listing deleted successfully');
 
         redirect('/listings');
     }
 
-        /**
+    /**
      * Show the listing edit form
      *
      * @param array $params
@@ -216,7 +220,8 @@ class ListingController
      * @param array $params
      * @return void
      */
-    public function update($params) {
+    public function update($params)
+    {
         $id = $params['id'] ?? '';
 
         $params = [
@@ -247,7 +252,7 @@ class ListingController
         ];
 
         $updateValues = [];
-        
+
         $updateValues = array_intersect_key($_POST, array_flip($allowedFields));
 
         $updateValues = array_map('sanitize', $updateValues);
@@ -264,11 +269,10 @@ class ListingController
 
         $errors = [];
 
-        foreach($requiredFields as $field) {
+        foreach ($requiredFields as $field) {
             if (empty($updateValues) || !Validation::string($updateValues[$field])) {
                 $errors[$field] = ucfirst($field) . ' is required';
             }
-
         }
 
         if (!empty($errors)) {
@@ -281,7 +285,7 @@ class ListingController
             // Submit to database
             $updateFields = [];
 
-            foreach(array_keys($updateValues) as $field) {
+            foreach (array_keys($updateValues) as $field) {
                 $updateFields[] = "{$field} = :{$field}";
             }
 
@@ -291,7 +295,7 @@ class ListingController
             $updateValues['id'] = $id;
             $this->db->query($updateQuery, $updateValues);
 
-            $_SESSION['success_message'] = 'Listing Updated';
+            Session::setFlashMessage('success_message', 'Listing Updated');
 
             redirect('/listings/' . $id);
         }
